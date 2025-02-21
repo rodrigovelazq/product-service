@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: product-service
+  profiles:
+    default: default
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/productsdb
+    username: admin
+    password: admin123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 8081
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+#  sql:
+#    init:
+#      mode: always
