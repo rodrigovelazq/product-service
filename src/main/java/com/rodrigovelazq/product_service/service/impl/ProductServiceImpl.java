@@ -51,6 +51,7 @@ public class ProductServiceImpl implements ProductService {
             Optional.ofNullable(product.getPrice()).ifPresent(existingProduct::setPrice);
             Optional.ofNullable(product.getCategory()).ifPresent(existingProduct::setCategory);
             Optional.ofNullable(product.getImage()).ifPresent(existingProduct::setImage);
+            Optional.ofNullable(product.getQuantity()).ifPresent(existingProduct::setQuantity);
             return productRepository.save(existingProduct);
         }).orElseThrow(() -> new ResourceNotFoundException("Product", "id", id.toString()));
     }

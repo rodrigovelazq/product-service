@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 @Data
 @Builder
@@ -29,4 +28,6 @@ public class Product {
     private String category;
     @Column(name = "image")
     private String image;
+    @Column(name = "quantity")
+    private BigDecimal quantity;
 }

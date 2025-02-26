@@ -40,9 +40,9 @@ public class ProductController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<ProductDto>  getProduct(@PathVariable("id") Long id) {
-        Optional<Product> foundPokemon = productService.findById(id);
-        return foundPokemon.map(pokemonEntity -> {
-            ProductDto productDto = productMapper.mapTo(pokemonEntity);
+        Optional<Product> foundProduct = productService.findById(id);
+        return foundProduct.map(product -> {
+            ProductDto productDto = productMapper.mapTo(product);
             return new ResponseEntity<>(productDto, HttpStatus.OK);
         }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
