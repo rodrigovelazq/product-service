@@ -7,6 +7,7 @@ import com.rodrigovelazq.product_service.mapper.ProductMapper;
 import com.rodrigovelazq.product_service.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,9 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/products")
@@ -27,7 +28,9 @@ public class ProductController {
     private ProductContactInfoDto productContactInfoDto;
     @GetMapping
     public ResponseEntity<Page<ProductDto>> findAllProduct(Pageable pageable) {
+        log.debug("findAllProduct method start");
         Page<Product> products = productService.findAll(pageable);
+        log.debug("findAllProduct method end");
         return new ResponseEntity<>(products.map(productMapper::mapTo), HttpStatus.OK);
     }
 

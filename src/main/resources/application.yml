@@ -34,7 +34,9 @@ management:
   info:
     env:
       enabled: true
-
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 eureka:
   instance:
@@ -50,6 +52,14 @@ info:
     name: "product-service"
     description: "Product Application"
     version: "1.0.0"
+
+logging:
+  level:
+    com:
+      rodrigovelazq:
+        product_service: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
 
 #  sql:
 #    init:
